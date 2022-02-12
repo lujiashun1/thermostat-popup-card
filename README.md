@@ -1,10 +1,8 @@
-[![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg?style=for-the-badge)](https://github.com/custom-components/hacs)
-
-# Thermostat popup card (homekit style)
+# Thermostat Popup Card (Homekit Style)
 Popup lovelace card for thermostats.
-Can be used in combination with thomas loven browser_mod or custom pop-up card or in combination with my homekit style card: https://github.com/DBuit/Homekit-panel-card
+Can be used in combination with thomas loven browser_mod or custom pop-up card.
 
-<a href="https://www.buymeacoffee.com/ZrUK14i" target="_blank"><img height="41px" width="167px" src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee"></a>
+### This card is originally created by [@DBuit](https://github.com/DBuit/thermostat-popup-card), but unfortunately the development of that card seems stale since 2020, This repo was created to address this (temporarily until he decides to update it). For now you can use this card instead which has fixes for icons not showing on the card.
 
 ## Configuration
 
