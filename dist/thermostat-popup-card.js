@@ -3195,13 +3195,13 @@ class ThermostatPopupCard extends LitElement {
             return html ``;
         }
         return html `
-      <ha-icon-button
+      <ha-icon
         class="${classMap({ "selected-icon": currentMode === mode })}"
         .mode="${mode}"
         .icon="${this.modeIcons[mode]}"
         @click="${this._handleModeClick}"
         tabindex="0"
-      ></ha-icon-button>
+      ></ha-icon>
     `;
     }
     _handleModeClick(e) {
