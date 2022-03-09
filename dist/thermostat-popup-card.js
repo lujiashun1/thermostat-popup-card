@@ -2971,7 +2971,7 @@ class ThermostatPopupCard extends LitElement {
             off: 7,
         };
         this.modeIcons = {
-            auto: "hass:calendar-repeat",
+            auto: "hass:calendar-refresh",
             heat_cool: "hass:autorenew",
             heat: "hass:fire",
             cool: "hass:snowflake",
