@@ -3167,9 +3167,9 @@ class ThermostatPopupCard extends LitElement {
     firstUpdated() {
         if (this.settings && !this.settingsCustomCard) {
             const mic = this.shadowRoot.querySelector("more-info-controls").shadowRoot;
-            if(mic.querySelector("app-toolbar")!=null) {
-                mic.removeChild(mic.querySelector("app-toolbar"));
-            }
+//             if(mic.querySelector("app-toolbar")!=null) {
+//                 mic.removeChild(mic.querySelector("app-toolbar"));
+//             }
         }
         else if (this.settings && this.settingsCustomCard) {
             this.shadowRoot.querySelectorAll("card-maker").forEach(customCard => {
