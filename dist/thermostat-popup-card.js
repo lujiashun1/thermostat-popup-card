@@ -3232,9 +3232,8 @@ class ThermostatPopupCard extends LitElement {
         if (!this.fanModeIcons[mode_temp]) {
             return html ``;
         }
-        
-        return html `
         throw new Error(currentMode);
+        return html `      
       <ha-icon
         class="${classMap({ "selected-icon": currentMode === mode })}"
         .mode="${mode}"
