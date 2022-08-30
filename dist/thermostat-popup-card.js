@@ -2980,10 +2980,10 @@ class ThermostatPopupCard extends LitElement {
             dry: "hass:water-percent",
         };
         this.fanModeIcons = {
-            Auto: "hass:mdi-fan-auto",
-            Low: "hass:mdi-fan-speed-1",
-            Medium: "hass:mdi-fan-speed-2",
-            High: "hass:mdi-fan-speed-3"
+            auto: "hass:mdi-fan-auto",
+            low: "hass:mdi-fan-speed-1",
+            medium: "hass:mdi-fan-speed-2",
+            high: "hass:mdi-fan-speed-3"
            
         };
         this.settings = false;
@@ -3226,14 +3226,15 @@ class ThermostatPopupCard extends LitElement {
     `;
     }
     _renderFanIcon(mode, currentMode) {
-        if (!this.fanModeIcons[mode]) {
+        var mode_temp=mode.toLowerCase();
+        if (!this.fanModeIcons[mode_temp]) {
             return html ``;
         }
         return html `
       <ha-icon
         class="${classMap({ "selected-icon": currentMode === mode })}"
         .mode="${mode}"
-        .icon="${this.fanModeIcons[mode]}"
+        .icon="${this.fanModeIcons[mode_temp]}"
         @click="${this._handleFanModeClick}"
         tabindex="0"
       ></ha-icon>
@@ -3248,7 +3249,7 @@ class ThermostatPopupCard extends LitElement {
     _handleFanModeClick(e) {
         this.hass.callService("climate", "set_fan_mode", {
             entity_id: this.config.entity,
-            hvac_mode: e.currentTarget.mode,
+            fan_mode: e.currentTarget.mode,
         });
     }
     _getSetTemp(stateObj) {
@@ -3326,6 +3327,9 @@ class ThermostatPopupCard extends LitElement {
             --dry-color: #efbd07;
             --idle-color: #00CC66;
             --unknown-color: #bac;
+            --low-color: #2b9af9;
+            --medium-color: #2b9af9;
+            --high-color: #2b9af9;
         }
         .popup-wrapper {
           margin-top:64px;
