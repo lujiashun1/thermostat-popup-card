@@ -2979,6 +2979,13 @@ class ThermostatPopupCard extends LitElement {
             fan_only: "hass:fan",
             dry: "hass:water-percent",
         };
+        this.fanModeIcons = {
+            Auto: "hass:mdi-fan-auto",
+            Low: "hass:mdi-fan-speed-1",
+            Medium: "hass:mdi-fan-speed-2",
+            High: "hass:mdi-fan-speed-3"
+           
+        };
         this.settings = false;
         this.settingsCustomCard = false;
         this.settingsPosition = "bottom";
@@ -3000,6 +3007,7 @@ class ThermostatPopupCard extends LitElement {
         var targetTemp = stateObj.attributes.temperature !== null && stateObj.attributes.temperature ? stateObj.attributes.temperature : stateObj.attributes.min_temp;
         var currentTemp = stateObj.attributes.current_temperature;
         var mode = stateObj.state in this.modeIcons ? stateObj.state : "unknown-mode";
+        var fanmode = stateObj.attributes.fan_mode in this.fanModeIcons ? stateObj.attributes.fan_mode : "unknown-mode";
         var _handleSize = 15;
         var _stepSize = this.config.stepSize ? this.config.stepSize : stateObj.attributes.target_temp_step ? stateObj.attributes.target_temp_step : 1;
         var gradient = true;
@@ -3117,6 +3125,11 @@ class ThermostatPopupCard extends LitElement {
             .sort(this._compareClimateHvacModes)
             .map((modeItem) => this._renderIcon(modeItem, mode))}
             </div>
+            <div id="fan_modes">
+              ${(stateObj.attributes.fan_modes || [])
+            .concat()
+            .map((modeItem) => this._renderFanIcon(modeItem, fanmode))}
+            </div>
             ${this.settings ? html `<button class="settings-btn ${this.settingsPosition}${fullscreen === true ? ' fullscreen' : ''}" @click="${() => this._openSettings()}">${this.config.settings.openButton ? this.config.settings.openButton : 'Settings'}</button>` : html ``}
           </div>
           ${this.settings ? html `
@@ -3204,8 +3217,28 @@ class ThermostatPopupCard extends LitElement {
       ></ha-icon>
     `;
     }
+    _renderFanIcon(mode, currentMode) {
+        if (!this.fanModeIcons[mode]) {
+            return html ``;
+        }
+        return html `
+      <ha-icon
+        class="${classMap({ "selected-icon": currentMode === mode })}"
+        .mode="${mode}"
+        .icon="${this.fanModeIcons[mode]}"
+        @click="${this._handleFanModeClick}"
+        tabindex="0"
+      ></ha-icon>
+    `;
+    }
     _handleModeClick(e) {
         this.hass.callService("climate", "set_hvac_mode", {
+            entity_id: this.config.entity,
+            hvac_mode: e.currentTarget.mode,
+        });
+    }
+    _handleFanModeClick(e) {
+        this.hass.callService("climate", "set_fan_mode", {
             entity_id: this.config.entity,
             hvac_mode: e.currentTarget.mode,
         });
@@ -3498,6 +3531,9 @@ class ThermostatPopupCard extends LitElement {
         #modes .selected-icon {
           color: var(--mode-color);
         }
+        #fan_modes .selected-icon {
+            color: var(--mode-color);
+          }
         text {
           color: var(--primary-text-color);
         }
