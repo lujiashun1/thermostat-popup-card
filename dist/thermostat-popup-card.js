@@ -3223,6 +3223,7 @@ class ThermostatPopupCard extends LitElement {
         class="${classMap({ "selected-icon": currentMode === mode })}"
         .mode="${mode}"
         .icon="${this.modeIcons[mode]}"
+        style="margin:0 10px;" 
         @click="${this._handleModeClick}"
         tabindex="0"
       ></ha-icon>
@@ -3239,6 +3240,7 @@ class ThermostatPopupCard extends LitElement {
         class="${classMap({ "selected-icon": currentMode === mode })}"
         .mode="${mode}"
         .icon="${this.fanModeIcons[mode]}"
+        style="margin:0 20px;" 
         @click="${this._handleFanModeClick}"
         tabindex="0"
       ></ha-icon>
