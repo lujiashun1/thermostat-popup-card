@@ -3487,6 +3487,12 @@ class ThermostatPopupCard extends LitElement {
         .unknown-mode {
           --mode-color: var(--unknown-color);
         }
+        .low {
+          --mode-color: var(--cool-color);
+        }
+        .Low {
+          --mode-color: var(--cool-color);
+        }
         #controls {
           display: flex;
           justify-content: center;
