@@ -3133,12 +3133,6 @@ class ThermostatPopupCard extends LitElement {
             .map((modeItem) => this._renderIcon(modeItem, mode))}
             </div>
             <div id="modes">
-              ${(stateObj.attributes.hvac_modes || [])
-            .concat()
-            .sort(this._compareClimateHvacModes)
-            .map((modeItem) => this._renderIcon(modeItem, mode))}
-            </div>
-            <div id="fan_modes">
               ${(stateObj.attributes.fan_modes || [])
             .concat()
             .sort(this._compareClimateFanModes)
