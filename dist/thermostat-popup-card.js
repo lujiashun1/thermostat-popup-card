@@ -3132,6 +3132,7 @@ class ThermostatPopupCard extends LitElement {
             .sort(this._compareClimateHvacModes)
             .map((modeItem) => this._renderIcon(modeItem, mode))}
             </div>
+            <br>
             <div id="modes">
               ${(stateObj.attributes.fan_modes || [])
             .concat()
@@ -3326,7 +3327,7 @@ class ThermostatPopupCard extends LitElement {
             --heat-color: #EE7600;
             --manual-color: #44739e;
             --off-color: lightgrey;
-            --fan_only-color: #8a8a8a;
+            --fan_only-color: #008080;
             --dry-color: #efbd07;
             --idle-color: #00CC66;
             --unknown-color: #bac;
@@ -3488,10 +3489,10 @@ class ThermostatPopupCard extends LitElement {
           --mode-color: var(--unknown-color);
         }
         .low {
-          --mode-color: var(--cool-color);
+          --fanmode-color: var(--cool-color);
         }
         .Low {
-          --mode-color: var(--cool-color);
+          --fanmode-color: var(--cool-color);
         }
         #controls {
           display: flex;
@@ -3553,7 +3554,7 @@ class ThermostatPopupCard extends LitElement {
           color: var(--mode-color);
         }
         #fan_modes .selected-icon {
-            color: var(--mode-color);
+            color: var(--fanmode-color);
           }
         text {
           color: var(--primary-text-color);
