@@ -2970,6 +2970,12 @@ class ThermostatPopupCard extends LitElement {
             fan_only: 6,
             off: 7,
         };
+        this.fanModeOrdering = {
+            Auto: 1,
+            Low: 2,
+            Medium: 3,
+            High: 4,
+        };
         this.modeIcons = {
             auto: "hass:calendar-refresh",
             heat_cool: "hass:autorenew",
@@ -2990,6 +2996,7 @@ class ThermostatPopupCard extends LitElement {
         this.settingsCustomCard = false;
         this.settingsPosition = "bottom";
         this._compareClimateHvacModes = (mode1, mode2) => this.hvacModeOrdering[mode1] - this.hvacModeOrdering[mode2];
+        this._compareClimateFanModes = (mode1, mode2) => this.fanModeOrdering[mode1] - this.fanModeOrdering[mode2];
     }
     static get properties() {
         return {
@@ -3134,6 +3141,7 @@ class ThermostatPopupCard extends LitElement {
             <div id="fan_modes">
               ${(stateObj.attributes.fan_modes || [])
             .concat()
+            .sort(this._compareClimateFanModes)
             .map((modeItem) => this._renderFanIcon(modeItem, fanmode))}
             </div>
             ${this.settings ? html `<button class="settings-btn ${this.settingsPosition}${fullscreen === true ? ' fullscreen' : ''}" @click="${() => this._openSettings()}">${this.config.settings.openButton ? this.config.settings.openButton : 'Settings'}</button>` : html ``}
