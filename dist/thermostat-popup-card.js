@@ -2986,10 +2986,10 @@ class ThermostatPopupCard extends LitElement {
             dry: "hass:water-percent",
         };
         this.fanModeIcons = {
-            auto: "hass:fan-auto",
-            low: "hass:fan-speed-1",
-            medium: "hass:fan-speed-2",
-            high: "hass:fan-speed-3"
+            Auto: "hass:fan-auto",
+            Low: "hass:fan-speed-1",
+            Medium: "hass:fan-speed-2",
+            High: "hass:fan-speed-3"
            
         };
         this.settings = false;
@@ -3230,7 +3230,7 @@ class ThermostatPopupCard extends LitElement {
     }
     _renderFanIcon(mode, currentMode) {
         var mode_temp=mode.toLowerCase();
-        if (!this.fanModeIcons[mode_temp]) {
+        if (!this.fanModeIcons[mode]) {
             return html ``;
         }
         //throw new Error(currentMode);
@@ -3238,7 +3238,7 @@ class ThermostatPopupCard extends LitElement {
       <ha-icon
         class="${classMap({ "selected-icon": currentMode === mode })}"
         .mode="${mode}"
-        .icon="${this.fanModeIcons[mode_temp]}"
+        .icon="${this.fanModeIcons[mode]}"
         @click="${this._handleFanModeClick}"
         tabindex="0"
       ></ha-icon>
